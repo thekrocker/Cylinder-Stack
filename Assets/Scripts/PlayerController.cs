@@ -57,6 +57,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Trap")
+        {
+            IncrementCylinderVolume(-Time.fixedDeltaTime);
+        }
+    }
+
     public void IncrementCylinderVolume(float value)
     {
         if (cylinders.Count == 0) // if there are no cylinders below our feet
