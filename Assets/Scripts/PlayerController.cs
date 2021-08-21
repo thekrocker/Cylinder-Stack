@@ -32,7 +32,11 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         MovePlayer();
+        SpawnBridgePieces();
+    }
 
+    private void SpawnBridgePieces()
+    {
         if (_spawningBridge)
         {
             _bridgePieceSpawnTimer -= Time.deltaTime;
@@ -42,18 +46,20 @@ public class PlayerController : MonoBehaviour
                 _bridgePieceSpawnTimer = 0.01f;
                 IncrementCylinderVolume(-0.01f);
                 GameObject createdBridge = Instantiate(bridgePiecePrefab);
-                Vector3 direction = _bridgeSpawner.endReference.transform.position - _bridgeSpawner.startReference.transform.position;
+                Vector3 direction = _bridgeSpawner.endReference.transform.position -
+                                    _bridgeSpawner.startReference.transform.position;
                 float distance = direction.magnitude;
                 direction = direction.normalized;
                 createdBridge.transform.forward = direction;
-                float characterDistance = transform.position.z - _bridgeSpawner.startReference.transform.position.z; // how far our character from start ref.
+                float characterDistance =
+                    transform.position.z -
+                    _bridgeSpawner.startReference.transform.position.z; // how far our character from start ref.
                 characterDistance = Mathf.Clamp(characterDistance, 0, distance);
-                
+
                 Vector3 newPiecePosition =
                     _bridgeSpawner.startReference.transform.position + direction * characterDistance;
                 newPiecePosition.x = transform.position.x;
                 createdBridge.transform.position = newPiecePosition;
-
             }
         }
     }
