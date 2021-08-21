@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("AddCylinder"))
         {
-            IncrementCylinderVolume(0.2f);
+            IncrementCylinderVolume(0.1f);
             Destroy(other.gameObject);
         }
     }

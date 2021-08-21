@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +10,11 @@ public class RidingCylinder : MonoBehaviour
     // Start is called before the first frame update
 
 
+    private void Update()
+    {
+        Debug.Log(_value);
+    }
+
     public void IncrementCylinderVolume(float value)
     {
         _value += value;
@@ -16,7 +22,7 @@ public class RidingCylinder : MonoBehaviour
         {
             // Make the cylinder's scale = 1, and create another cylinder according how much bigger than 1.
 
-            float leftValue = value - 1;
+            float leftValue = _value - 1; // for example 1.34 will give us 0.34
             int cylinderCount = PlayerController.Current.cylinders.Count;
             
             transform.localPosition = new Vector3(transform.localPosition.x,-0.5f * (cylinderCount - 1) - 0.25f ,transform.localPosition.z);
