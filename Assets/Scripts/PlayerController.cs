@@ -1,18 +1,25 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Current;
+    
     public float limitX;
     
     public float runningSpeed;
     public float xSpeed;
     private float _currentRunningSpeed;
 
+    public GameObject ridingCylinderPrefab;
+    public List<RidingCylinder> cylinders;
+
     // Start is called before the first frame update
     void Start()
     {
+        Current = this;
         _currentRunningSpeed = runningSpeed;
     }
 
@@ -39,8 +46,47 @@ public class PlayerController : MonoBehaviour
         transform.position = newPosition;
         
         
-        
-        
-        
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("AddCylinder"))
+        {
+            IncrementCylinderVolume(0.2f);
+            Destroy(other.gameObject);
+        }
+    }
+
+    public void IncrementCylinderVolume(float value)
+    {
+        if (cylinders.Count == 0) // if there are no cylinders below our feet
+        {
+            if (value > 0) // if we are trying to make it bigger
+            {
+                CreateCylinder(value);
+            }
+            else
+            {
+                // Game Over
+            }
+            
+        }
+        else
+        {
+            cylinders[cylinders.Count - 1].IncrementCylinderVolume(value); // last member of cylinder. (undermost) // this method is at RidingCylinder.
+        }
+    }
+
+    public void CreateCylinder(float value)
+    {
+        RidingCylinder createdCylinder = Instantiate(ridingCylinderPrefab, transform).GetComponent<RidingCylinder>();
+        cylinders.Add(createdCylinder);
+        createdCylinder.IncrementCylinderVolume(value);
+    }
+
+    public void DestroyCylinder(RidingCylinder cylinder)
+    {
+        cylinders.Remove(cylinder);
+        Destroy(cylinder.gameObject);
     }
 }
