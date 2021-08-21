@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
                 float distance = direction.magnitude;
                 direction = direction.normalized;
                 createdBridge.transform.forward = direction;
-                float characterDistance = transform.position.z - _bridgeSpawner.transform.position.z; // how far our character from start ref.
+                float characterDistance = transform.position.z - _bridgeSpawner.startReference.transform.position.z; // how far our character from start ref.
                 characterDistance = Mathf.Clamp(characterDistance, 0, distance);
                 
                 Vector3 newPiecePosition =
