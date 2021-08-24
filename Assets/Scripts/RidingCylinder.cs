@@ -10,10 +10,7 @@ public class RidingCylinder : MonoBehaviour
     // Start is called before the first frame update
 
 
-    private void Update()
-    {
-        Debug.Log(_value);
-    }
+
 
     public void IncrementCylinderVolume(float value)
     {
