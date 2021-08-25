@@ -14,10 +14,17 @@ public class PlayerController : MonoBehaviour
     private float _currentRunningSpeed;
     private float _bridgePieceSpawnTimer;
 
+    public Animator anim;
+
     public GameObject ridingCylinderPrefab;
     public List<RidingCylinder> cylinders;
 
     private bool _spawningBridge;
+    private bool _finished;
+
+    private float _scoreTimer = 0;
+    
+    
     public GameObject bridgePiecePrefab;
     private BridgeSpawner _bridgeSpawner;
 
@@ -25,12 +32,16 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         Current = this;
-        _currentRunningSpeed = runningSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (LevelController.Current == null || !LevelController.Current.gameActive)
+        {
+            return;
+        }
+
         MovePlayer();
         SpawnBridgePieces();
     }
@@ -61,6 +72,17 @@ public class PlayerController : MonoBehaviour
                     _bridgeSpawner.startReference.transform.position + direction * characterDistance;
                 newPiecePosition.x = transform.position.x;
                 createdBridge.transform.position = newPiecePosition;
+
+                if (_finished)
+                {
+                    _scoreTimer -= Time.deltaTime;
+                    if (_scoreTimer < 0)
+                    {
+                        _scoreTimer = 0.3f;
+                        LevelController.Current.ChangeScore(1); // increase score by one.
+                    }
+                }
+                
             }
         }
     }
@@ -89,6 +111,11 @@ public class PlayerController : MonoBehaviour
         transform.position = newPosition;
     }
 
+
+    public void ChangeSpeed(float value) // to change speed when the game starts
+    {
+        _currentRunningSpeed = value;
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("AddCylinder"))
@@ -103,6 +130,17 @@ public class PlayerController : MonoBehaviour
         } else if(other.CompareTag("StopSpawnBridge"))
         {
             StopSpawningBridge();
+            if (_finished)
+            {
+                LevelController.Current.FinishGame();
+            }
+            
+            
+        } else if (other.CompareTag("Finish"))
+        {
+            _finished = true;
+            StartSpawningBridge(other.transform.parent.GetComponent<BridgeSpawner>());
+
         }
     }
 
@@ -124,7 +162,14 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                // Game Over
+                if (_finished)
+                {
+                    LevelController.Current.FinishGame();
+                }
+                else
+                {
+                    LevelController.Current.GameOver();
+                }
             }
             
         }
