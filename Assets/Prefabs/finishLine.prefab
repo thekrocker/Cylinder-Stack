@@ -119,6 +119,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6155017255201086750}
   - component: {fileID: 6155017255201086751}
+  - component: {fileID: 5023451636018138870}
   m_Layer: 9
   m_Name: hiddenPlatform
   m_TagString: Untagged
@@ -153,6 +154,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 8, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5023451636018138870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6155017255201086816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07128ba7726bf714398afad55dce0228, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6155017255309880941
 GameObject:
   m_ObjectHideFlags: 0

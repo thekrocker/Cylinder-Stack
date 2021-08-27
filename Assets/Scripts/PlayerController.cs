@@ -187,10 +187,9 @@ public class PlayerController : MonoBehaviour
 
     public void Die()
     {
-        //Collider collider = GetComponent<Collider>();
         anim.SetBool("dead", true);
-        gameObject.layer = 8;
-        //collider.isTrigger = true;// We assigned it to CharacterDead layer, so that it wont be able to interact with HiddenCollider in bridge
+        // HiddenPlatform isTrigger true
+        HiddenPlatform.Current.FallDownFromBridge();
         _camera.transform.SetParent(null); // We let the camera out of parent from player. So that camera wont follow while its falling down
         LevelController.Current.GameOver();
 
