@@ -1451,7 +1451,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   limitX: 3.9
-  runningSpeed: 4
+  runningSpeed: 3
   xSpeed: 100
   anim: {fileID: 1062555793}
   ridingCylinderPrefab: {fileID: 7387778625602105551, guid: a2e76d477212b1146a82a70449cd5f6b,

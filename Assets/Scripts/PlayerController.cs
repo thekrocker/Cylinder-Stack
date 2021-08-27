@@ -124,7 +124,6 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
         if (other.CompareTag("AddCylinder"))
         {
             IncrementCylinderVolume(0.1f);
@@ -153,7 +152,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Trap")
+        if (other.CompareTag("Trap"))
         {
             IncrementCylinderVolume(-Time.fixedDeltaTime);
         }
@@ -188,10 +187,10 @@ public class PlayerController : MonoBehaviour
 
     public void Die()
     {
-        Collider collider = GetComponent<Collider>();
+        //Collider collider = GetComponent<Collider>();
         anim.SetBool("dead", true);
         gameObject.layer = 8;
-        collider.isTrigger = true;// We assigned it to CharacterDead layer, so that it wont be able to interact with HiddenCollider in bridge
+        //collider.isTrigger = true;// We assigned it to CharacterDead layer, so that it wont be able to interact with HiddenCollider in bridge
         _camera.transform.SetParent(null); // We let the camera out of parent from player. So that camera wont follow while its falling down
         LevelController.Current.GameOver();
 
