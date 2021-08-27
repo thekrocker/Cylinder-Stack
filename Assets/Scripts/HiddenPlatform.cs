@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class HiddenPlatform : MonoBehaviour
 {
-    public static HiddenPlatform Current;
+   /* public static HiddenPlatform Current;
     private Collider _coll;
 
     private void Awake()
@@ -18,4 +18,5 @@ public class HiddenPlatform : MonoBehaviour
         _coll = GetComponent<Collider>();
         _coll.isTrigger = true;
     }
+    */
 }

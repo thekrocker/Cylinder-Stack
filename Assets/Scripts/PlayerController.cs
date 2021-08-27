@@ -188,8 +188,7 @@ public class PlayerController : MonoBehaviour
     public void Die()
     {
         anim.SetBool("dead", true);
-        // HiddenPlatform isTrigger true
-        HiddenPlatform.Current.FallDownFromBridge();
+        gameObject.layer = 8;
         _camera.transform.SetParent(null); // We let the camera out of parent from player. So that camera wont follow while its falling down
         LevelController.Current.GameOver();
 
