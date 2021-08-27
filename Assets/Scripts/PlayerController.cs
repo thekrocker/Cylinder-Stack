@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private float _bridgePieceSpawnTimer;
 
     public Animator anim;
+    private float _lastTouchedX;
 
     public GameObject ridingCylinderPrefab;
     public List<RidingCylinder> cylinders;
@@ -97,11 +98,18 @@ public class PlayerController : MonoBehaviour
     {
         float newX = 0;
         float touchXDelta = 0;
-        if (Input.touchCount > 0 &&
-            Input.GetTouch(0).phase == TouchPhase.Moved) // If the user touches screen and that touched screen is moving 
+        if (Input.touchCount > 0) // If the user touches screen and that touched screen is moving 
         {
-            touchXDelta =
-                Input.GetTouch(0).deltaPosition.x / Screen.width; // Previous position && currrent position // screen.width
+            if (
+                Input.GetTouch(0).phase == TouchPhase.Began)
+            {
+                _lastTouchedX = Input.GetTouch(0).position.x;
+            } else if(Input.GetTouch(0).phase == TouchPhase.Moved)
+            {
+                touchXDelta =  5 * (_lastTouchedX - Input.GetTouch(0).position.x) / Screen.width; // Previous position && currrent position // screen.width
+                _lastTouchedX = Input.GetTouch(0).position.x;
+            }
+
         }
         else if (Input.GetMouseButton(0)) // if mouse clicked
         {
