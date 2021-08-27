@@ -2069,6 +2069,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28bcf093c60193b408c94d0e0e982361, type: 3}
+--- !u!1 &766397322 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6155017255201086816, guid: ec9d9810a98503a4e8958f61e3916718,
+    type: 3}
+  m_PrefabInstance: {fileID: 868993477}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &804839103
 GameObject:
   m_ObjectHideFlags: 0
@@ -2342,6 +2348,85 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 981083423}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &868993477
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6155017255309880940, guid: ec9d9810a98503a4e8958f61e3916718,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6155017255309880940, guid: ec9d9810a98503a4e8958f61e3916718,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6155017256057902828, guid: ec9d9810a98503a4e8958f61e3916718,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 6155017256057902828, guid: ec9d9810a98503a4e8958f61e3916718,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6155017256057902828, guid: ec9d9810a98503a4e8958f61e3916718,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6155017256057902828, guid: ec9d9810a98503a4e8958f61e3916718,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 88.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 6155017256057902828, guid: ec9d9810a98503a4e8958f61e3916718,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6155017256057902828, guid: ec9d9810a98503a4e8958f61e3916718,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6155017256057902828, guid: ec9d9810a98503a4e8958f61e3916718,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6155017256057902828, guid: ec9d9810a98503a4e8958f61e3916718,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6155017256057902828, guid: ec9d9810a98503a4e8958f61e3916718,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6155017256057902828, guid: ec9d9810a98503a4e8958f61e3916718,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6155017256057902828, guid: ec9d9810a98503a4e8958f61e3916718,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6155017256057902830, guid: ec9d9810a98503a4e8958f61e3916718,
+        type: 3}
+      propertyPath: m_Name
+      value: finishLine
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ec9d9810a98503a4e8958f61e3916718, type: 3}
 --- !u!1 &882415512
 GameObject:
   m_ObjectHideFlags: 0
@@ -3163,7 +3248,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1175916927}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1301161222}
+        m_MethodName: LoadNextLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1175916927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3476,6 +3572,9 @@ MonoBehaviour:
   finishScoreText: {fileID: 1888306179}
   currentLevelText: {fileID: 1920942372}
   nextLevelText: {fileID: 427496343}
+  levelProgressBar: {fileID: 998513084}
+  maxDistance: 0
+  finishLine: {fileID: 766397322}
 --- !u!4 &1301161223
 Transform:
   m_ObjectHideFlags: 0
@@ -3855,7 +3954,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1499192737}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1301161222}
+        m_MethodName: RestartLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1499192737
 MonoBehaviour:
   m_ObjectHideFlags: 0

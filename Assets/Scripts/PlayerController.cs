@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     
     public float limitX;
     
-    public float runningSpeed;
+    [Range(0,20)]public float runningSpeed;
     public float xSpeed;
     private float _currentRunningSpeed;
     private float _bridgePieceSpawnTimer;
@@ -27,8 +27,14 @@ public class PlayerController : MonoBehaviour
     
     public GameObject bridgePiecePrefab;
     private BridgeSpawner _bridgeSpawner;
+    private Camera _camera;
 
     // Start is called before the first frame update
+    private void Awake()
+    {
+        _camera = Camera.main;
+    }
+
     void Start()
     {
         Current = this;
@@ -118,6 +124,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.name);
         if (other.CompareTag("AddCylinder"))
         {
             IncrementCylinderVolume(0.1f);
@@ -168,7 +175,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    LevelController.Current.GameOver();
+                    Die();
                 }
             }
             
@@ -177,6 +184,17 @@ public class PlayerController : MonoBehaviour
         {
             cylinders[cylinders.Count - 1].IncrementCylinderVolume(value); // last member of cylinder. (undermost) // this method is at RidingCylinder.
         }
+    }
+
+    public void Die()
+    {
+        Collider collider = GetComponent<Collider>();
+        anim.SetBool("dead", true);
+        gameObject.layer = 8;
+        collider.isTrigger = true;// We assigned it to CharacterDead layer, so that it wont be able to interact with HiddenCollider in bridge
+        _camera.transform.SetParent(null); // We let the camera out of parent from player. So that camera wont follow while its falling down
+        LevelController.Current.GameOver();
+
     }
 
     public void CreateCylinder(float value)

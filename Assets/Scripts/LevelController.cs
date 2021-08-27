@@ -39,7 +39,7 @@ public class LevelController : MonoBehaviour
         if (gameActive)
         {
             PlayerController player = PlayerController.Current;
-            float distance = finishLine.transform.position.z - PlayerController.Current.transform.position.z;
+            float distance = finishLine.transform.position.z - player.transform.position.z;
             levelProgressBar.value = 1 - (distance / maxDistance); // for reverse, we need to substract from 1. so that it goes to full. 
         }
     }
